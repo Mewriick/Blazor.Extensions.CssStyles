@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Blazor.MaterialUI\Blazor.MaterialUI.csproj" />
     <ProjectReference Include="..\DemoApp.Shared\DemoApp.Shared.csproj" />
   </ItemGroup>
 

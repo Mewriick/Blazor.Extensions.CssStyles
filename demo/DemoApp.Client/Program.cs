@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using Blazor.MaterialUI.Css;
+using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace DemoApp.Client
 {
@@ -12,6 +11,7 @@ namespace DemoApp.Client
             var serviceProvider = new BrowserServiceProvider(services =>
             {
                 // Add any custom services here
+                services.AddMaterialUiCss();
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");
