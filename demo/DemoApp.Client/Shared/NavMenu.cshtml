@@ -1,15 +1,11 @@
-﻿@addTagHelper *, Blazor.MaterialUI
-@using Blazor.MaterialUI.Css
-@inject ICssClassWriter cssWriter;
-
-<div class="top-row pl-4 navbar navbar-dark">
+﻿<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="/">DemoApp</a>
     <button class="navbar-toggler" onclick=@ToggleNavMenu>
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class=@(classNames.BuildCssClassNames()) onclick=@ToggleNavMenu>
+<div class=@(collapseNavMenu ? "collapse" : null) onclick=@ToggleNavMenu>
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="/" Match=NavLinkMatch.All>
@@ -31,34 +27,15 @@
 
 @functions {
 bool collapseNavMenu = true;
-CssClass cssClass;
-CssClass cssClass2;
-RuleBasedCssClassNames classNames;
-Random random;
 
 void ToggleNavMenu()
 {
     collapseNavMenu = !collapseNavMenu;
 }
 
-int Number()
-{
-    return random.Next(100);
-}
-
 protected override void OnInit()
 {
     base.OnInit();
 
-    random = new Random();
-
-    cssClass = new CssClass("Test");
-    cssClass2 = new CssClass("Test2");
-
-    cssWriter.WriteCssClass(cssClass);
-
-    classNames = new RuleBasedCssClassNames()
-            .AddCssClassApplyRule(cssClass, () => collapseNavMenu)
-            .AddCssClassApplyRule(cssClass2, () => Number() > 20);
 }
 }

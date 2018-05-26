@@ -2,12 +2,10 @@
 
 namespace Blazor.MaterialUI.Css
 {
-    public interface ICssClass
+    public interface ICssClass : ICss, ICssProperties
     {
-        string Name { get; }
+        IEnumerable<CssPattern> Patterns { get; }
 
-        IEnumerable<CssStyle> Styles { get; }
-
-        IDictionary<string, ICssClass> Selectors { get; }
+        void AssignUniqueName();
     }
 }

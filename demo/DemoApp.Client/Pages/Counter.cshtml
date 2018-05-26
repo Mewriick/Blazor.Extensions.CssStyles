@@ -1,4 +1,8 @@
-﻿@page "/counter"
+﻿@addTagHelper *, Blazor.MaterialUI
+@using Blazor.MaterialUI.Css
+@inject ICssClassWriter cssWriter;
+
+@page "/counter"
 
 <h1>Counter</h1>
 
@@ -7,10 +11,34 @@
 <button class="btn btn-primary" onclick="@IncrementCount">Click me</button>
 
 @functions {
-    int currentCount = 0;
+int currentCount = 0;
+CssClass cssClass;
+CssClass cssClass2;
 
-    void IncrementCount()
-    {
-        currentCount++;
-    }
+void IncrementCount()
+{
+    currentCount++;
+}
+
+protected override void OnInit()
+{
+    base.OnInit();
+
+
+
+    cssClass = new CssClass("Button")
+            .AddStyle("color", "greeen")
+            .AddSelector("hover", props => props
+                .AddStyle("color", "red")
+                .AddStyle("width", "20px"))
+           .AddMediaQuery("@media (min-width: 1024px)", props =>
+                props.AddStyle("width", "50px"));
+
+
+    cssClass2 = new CssClass("Button").AddStyle("color", "yellow");
+
+
+    cssWriter.WriteCssClass(cssClass);
+    cssWriter.WriteCssClass(cssClass2);
+}
 }

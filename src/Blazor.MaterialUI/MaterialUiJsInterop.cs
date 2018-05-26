@@ -4,11 +4,11 @@ namespace Blazor.MaterialUI
 {
     public class MaterialUiJsInterop
     {
-        public static string AppendStyle(string message)
+        public static string AppendStyle(string css)
         {
             return RegisteredFunction.Invoke<string>(
                 "Blazor.MaterialUI.ExampleJsInterop.AppendStyle",
-                message);
+                css);
         }
     }
 }

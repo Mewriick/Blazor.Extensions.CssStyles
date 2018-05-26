@@ -7,7 +7,8 @@ namespace Blazor.MaterialUI.Css
         public static IServiceCollection AddMaterialUiCss(this IServiceCollection services)
         {
             services.AddSingleton<ICssClassBuilder, CssClassBuilder>();
-            services.AddSingleton<ICssClassRealNameProvider, BrowserCssClassRealNameProvider>();
+            services.AddSingleton<ICssClassesCache, MemoryCssClassesCache>();
+            services.AddSingleton<ICssJsInterop, CssJsInterop>();
             services.AddSingleton<ICssClassWriter, BrowserCssClassWriter>();
 
             return services;
