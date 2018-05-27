@@ -1,23 +1,27 @@
-﻿namespace Blazor.Extensions.CssStyles.Css
+﻿using System;
+
+namespace Blazor.Extensions.CssStyles.Css
 {
     public class PseudoSelector
     {
-        public static PseudoSelector Hover = new PseudoSelector("Hover", "hover");
-        public static PseudoSelector Active = new PseudoSelector("Active", "active");
-        public static PseudoSelector Checked = new PseudoSelector("Checked", "checked");
-        public static PseudoSelector Disabled = new PseudoSelector("Disabled", "disabled");
-        public static PseudoSelector Enabled = new PseudoSelector("Enabled", "enabled");
-        public static PseudoSelector Focus = new PseudoSelector("Focus", "focus");
-        public static PseudoSelector After = new PseudoSelector("After", ":after");
-        public static PseudoSelector Before = new PseudoSelector("Before", ":before");
-
-        public string Name { get; }
+        public static PseudoSelector Hover = new PseudoSelector("hover");
+        public static PseudoSelector Active = new PseudoSelector("active");
+        public static PseudoSelector Checked = new PseudoSelector("checked");
+        public static PseudoSelector Disabled = new PseudoSelector("disabled");
+        public static PseudoSelector Enabled = new PseudoSelector("enabled");
+        public static PseudoSelector Focus = new PseudoSelector("focus");
+        public static PseudoSelector After = new PseudoSelector(":after");
+        public static PseudoSelector Before = new PseudoSelector(":before");
 
         public string CssRenderedValue { get; }
 
-        private PseudoSelector(string name, string cssRenderedValue)
+        private PseudoSelector(string cssRenderedValue)
         {
-            Name = name;
+            if (string.IsNullOrWhiteSpace(cssRenderedValue))
+            {
+                throw new ArgumentNullException(nameof(cssRenderedValue));
+            }
+
             CssRenderedValue = cssRenderedValue;
         }
     }

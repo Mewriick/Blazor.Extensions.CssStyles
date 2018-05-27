@@ -6,6 +6,6 @@ namespace Blazor.Extensions.CssStyles.Css
     {
         IEnumerable<CssStyle> Styles { get; }
 
-        ICssProperties WithStyle(string name, string value);
+        ICssProperties WithStyle(string styleName, ICssStyleValue value);
     }
 }

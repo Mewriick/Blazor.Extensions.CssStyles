@@ -6,7 +6,7 @@ namespace Blazor.Extensions.CssStyles.Css
     {
         public string Name { get; set; }
 
-        public ICssValue Value { get; set; }
+        public ICssStyleValue Value { get; set; }
 
         public override string ToString()
         {

@@ -1,6 +1,6 @@
 ﻿namespace Blazor.Extensions.CssStyles.Css
 {
-    public interface ICssValue
+    public interface ICssStyleValue
     {
         string CssRepresentation();
     }

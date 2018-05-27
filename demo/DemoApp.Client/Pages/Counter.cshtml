@@ -1,4 +1,4 @@
-﻿@addTagHelper *, Blazor.MaterialUI
+﻿@addTagHelper *, Blazor.Extensions.CssStyles
 @using Blazor.Extensions.CssStyles.Css;
 @inherits Blazor.Extensions.CssStyles.Components.ComponentWithStyles
 
@@ -8,12 +8,13 @@
 
 <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" onclick="@IncrementCount">Click me</button>
+<button class=@(cssClass.Name) onclick="@IncrementCount">Click me</button>
 
 @functions {
 int currentCount = 0;
 CssClass cssClass;
 CssClass cssClass2;
+CssClass cssClass3;
 
 void IncrementCount()
 {
@@ -24,22 +25,43 @@ protected override void OnInit()
 {
     base.OnInit();
 
-
-
     cssClass = new CssClass("Button")
-            .WithStyle("color", "green")
-            .WithStyle("margin", "20px")
-            .WithPixelStyle("padding-left", 12)
-            .WithStyle("padding-bottom", 15, CssUnits.Em)
+            .WithStyle(CssPropertyNames.Color, "green")
+            .WithStyle(CssPropertyNames.Margin, "20px")
+            .WithlStyleInPixelUnit(CssPropertyNames.PaddingLeft, 12)
+            .WithStyle(CssPropertyNames.PaddingBottom, 15, CssUnits.Em)
+            .WithStyle(CssPropertyNames.Border, NumberCssStyleValue.CreatePixelValue(5), TextCssStyleValue.CreateTextValue("dotted"))
         .AddPseudoSelector(PseudoSelector.Hover, props => props
-            .WithStyle("color", "red")
-            .WithStyle("width", "20px"))
+            .WithStyle(CssPropertyNames.Color, "red")
+            .WithStyle(CssPropertyNames.Width, "20px"))
        .AddMediaQuery("@media (min-width: 1024px)", props =>
-            props.WithStyle("width", "50px"));
+            props.WithStyle(CssPropertyNames.Width, "50px"));
 
 
-    cssClass2 = new CssClass("Button").WithStyle("color", "yellow");
+    cssClass2 = new CssClass("Button1")
+            .WithStyle(CssPropertyNames.Color, "green")
+            .WithStyle(CssPropertyNames.Margin, "20px")
+            .WithlStyleInPixelUnit(CssPropertyNames.PaddingLeft, 12)
+            .WithStyle(CssPropertyNames.PaddingBottom, 15, CssUnits.Em)
+            .WithStyle(CssPropertyNames.Border, NumberCssStyleValue.CreatePixelValue(5), TextCssStyleValue.CreateTextValue("dotted"))
+        .AddPseudoSelector(PseudoSelector.Hover, props => props
+            .WithStyle(CssPropertyNames.Color, "red")
+            .WithStyle(CssPropertyNames.Width, "20px"))
+       .AddMediaQuery("@media (min-width: 1024px)", props =>
+            props.WithStyle(CssPropertyNames.Width, "50px"));
 
-    ExportStyles(cssClass, cssClass2);
+    cssClass3 = new CssClass("Button2")
+            .WithStyle(CssPropertyNames.Color, "green")
+            .WithStyle(CssPropertyNames.Margin, "20px")
+            .WithlStyleInPixelUnit(CssPropertyNames.PaddingLeft, 12)
+            .WithStyle(CssPropertyNames.PaddingBottom, 15, CssUnits.Em)
+            .WithStyle(CssPropertyNames.Border, NumberCssStyleValue.CreatePixelValue(5), TextCssStyleValue.CreateTextValue("dotted"))
+        .AddPseudoSelector(PseudoSelector.Hover, props => props
+            .WithStyle(CssPropertyNames.Color, "red")
+            .WithStyle(CssPropertyNames.Width, "20px"))
+        .AddMediaQuery("@media (min-width: 1024px)", props =>
+            props.WithStyle(CssPropertyNames.Width, "50px"));
+
+    ExportStyles(cssClass, cssClass2, cssClass3);
 }
 }

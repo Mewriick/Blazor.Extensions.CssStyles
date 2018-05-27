@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Blazor.Extensions.CssStyles.Css
 {
@@ -13,9 +14,19 @@ namespace Blazor.Extensions.CssStyles.Css
             styles = new List<CssStyle>();
         }
 
-        public ICssProperties WithStyle(string name, string value)
+        public ICssProperties WithStyle(string styleName, ICssStyleValue value)
         {
-            styles.Add(new CssStyle { Name = name, Value = new TextCssValue(value) });
+            if (string.IsNullOrWhiteSpace(styleName))
+            {
+                throw new ArgumentNullException(nameof(styleName));
+            }
+
+            if (value is null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            styles.Add(new CssStyle { Name = styleName, Value = value });
 
             return this;
         }

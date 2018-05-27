@@ -26,15 +26,25 @@ namespace Blazor.Extensions.CssStyles.Css
             patterns = new List<CssPattern>();
         }
 
-        public CssClass WithStyle(string name, string value)
+        public CssClass WithStyle(string styleName, string value)
         {
-            properties.WithStyle(name, value);
+            properties.WithStyle(styleName, new TextCssStyleValue(value));
 
             return this;
         }
 
         public CssClass AddPseudoSelector(PseudoSelector pseudoSelector, Action<CssProperties> configureStyles)
         {
+            if (pseudoSelector is null)
+            {
+                throw new ArgumentNullException(nameof(pseudoSelector));
+            }
+
+            if (configureStyles is null)
+            {
+                throw new ArgumentNullException(nameof(configureStyles));
+            }
+
             var cssSelector = new CssPattern(pseudoSelector.CssRenderedValue);
             configureStyles(cssSelector);
 
@@ -45,6 +55,16 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public CssClass AddMediaQuery(string query, Action<CssProperties> configureStyles)
         {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            if (configureStyles is null)
+            {
+                throw new ArgumentNullException(nameof(configureStyles));
+            }
+
             var cssSelector = new MediaCssPattern(query);
             configureStyles(cssSelector);
 
@@ -58,7 +78,7 @@ namespace Blazor.Extensions.CssStyles.Css
             Name = $"{originalName}-{Math.Abs(GetHashCode())}";
         }
 
-        ICssProperties ICssProperties.WithStyle(string name, string value)
+        ICssProperties ICssProperties.WithStyle(string name, ICssStyleValue value)
         {
             properties.WithStyle(name, value);
 

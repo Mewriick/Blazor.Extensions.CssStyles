@@ -6,9 +6,8 @@ namespace Blazor.Extensions.CssStyles.Css
     {
         private const int BuilderStartingCapacity = 100;
 
-
-        public MediaCssPattern(string name)
-            : base(name)
+        public MediaCssPattern(string query)
+            : base(query)
         {
         }
 

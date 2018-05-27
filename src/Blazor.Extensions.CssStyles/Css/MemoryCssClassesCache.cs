@@ -18,6 +18,11 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public void StoreCssClassRealName(ICssClass cssClass)
         {
+            if (cssClass is null)
+            {
+                throw new ArgumentNullException(nameof(cssClass));
+            }
+
             logger.LogInformation($"Storing key [{cssClass.Name}]");
 
             realizedCssClasses.Add(cssClass.Name);
@@ -25,6 +30,11 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public bool CssClassIsAlreadyRealized(ICssClass cssClass)
         {
+            if (cssClass is null)
+            {
+                throw new ArgumentNullException(nameof(cssClass));
+            }
+
             logger.LogInformation($"Start finding key [{cssClass.Name}]");
 
             if (realizedCssClasses.Contains(cssClass.Name))

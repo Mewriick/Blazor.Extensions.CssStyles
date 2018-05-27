@@ -1,4 +1,6 @@
-﻿namespace Blazor.Extensions.CssStyles.Css
+﻿using System;
+
+namespace Blazor.Extensions.CssStyles.Css
 {
     public class CssUnits
     {
@@ -23,6 +25,11 @@
 
         private CssUnits(string symbol)
         {
+            if (string.IsNullOrWhiteSpace(symbol))
+            {
+                throw new ArgumentNullException(nameof(symbol));
+            }
+
             Symbol = symbol;
         }
     }
