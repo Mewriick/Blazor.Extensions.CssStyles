@@ -36,7 +36,7 @@ In your Blazor component add Tag helper and **Inherit from ComponentWithStyles**
 
 	void IncrementCount()
 	{
-		currentCount++;
+	  currentCount++;
 	}
 
 	protected override void OnInit()
@@ -48,12 +48,14 @@ In your Blazor component add Tag helper and **Inherit from ComponentWithStyles**
 				.WithStyle(CssPropertyNames.Margin, "20px")
 				.WithlStyleInPixelUnit(CssPropertyNames.PaddingLeft, 12)
 				.WithStyle(CssPropertyNames.PaddingBottom, 15, CssUnits.Em)
-				.WithStyle(CssPropertyNames.Border, NumberCssStyleValue.CreatePixelValue(5), TextCssStyleValue.CreateTextValue("dotted"))
-			.AddPseudoSelector(PseudoSelector.Hover, props => props
-				.WithStyle(CssPropertyNames.Color, "red")
-				.WithStyle(CssPropertyNames.Width, "20px"))
-		   .AddMediaQuery("@media (min-width: 1024px)", props =>
-				props.WithStyle(CssPropertyNames.Width, "50px"));
+				.WithStyle(CssPropertyNames.Border,
+					NumberCssStyleValue.CreatePixelValue(5),
+					TextCssStyleValue.CreateTextValue("dotted"))
+				.AddPseudoSelector(PseudoSelector.Hover, props => props
+					.WithStyle(CssPropertyNames.Color, "red")
+					.WithStyle(CssPropertyNames.Width, "20px"))
+				.AddMediaQuery("@media (min-width: 1024px)", props =>
+					props.WithStyle(CssPropertyNames.Width, "50px"));
 	}
 }
 ```
