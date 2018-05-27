@@ -21,7 +21,7 @@ namespace Blazor.Extensions.CssStyles.Css
 
             foreach (var style in Styles)
             {
-                cssBuilder.AppendLine($"\t\t{style.Name}: {style.Value};");
+                cssBuilder.AppendLine($"\t\t{style}");
             }
 
             cssBuilder.AppendLine("\t }");

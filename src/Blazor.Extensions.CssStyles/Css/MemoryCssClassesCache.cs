@@ -18,11 +18,15 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public void StoreCssClassRealName(ICssClass cssClass)
         {
+            logger.LogInformation($"Storing key [{cssClass.Name}]");
+
             realizedCssClasses.Add(cssClass.Name);
         }
 
         public bool CssClassIsAlreadyRealized(ICssClass cssClass)
         {
+            logger.LogInformation($"Start finding key [{cssClass.Name}]");
+
             if (realizedCssClasses.Contains(cssClass.Name))
             {
                 logger.LogInformation($"Css class [{cssClass.Name}] found in cahce");

@@ -15,6 +15,8 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public IEnumerable<CssPattern> Patterns => patterns;
 
+        public SelectorType SelectorType => SelectorType.Class;
+
         public CssClass(string name)
         {
             originalName = name;
@@ -24,16 +26,16 @@ namespace Blazor.Extensions.CssStyles.Css
             patterns = new List<CssPattern>();
         }
 
-        public CssClass AddStyle(string name, string value)
+        public CssClass WithStyle(string name, string value)
         {
-            properties.AddStyle(name, value);
+            properties.WithStyle(name, value);
 
             return this;
         }
 
-        public CssClass AddSelector(string name, Action<CssProperties> configureStyles)
+        public CssClass AddPseudoSelector(PseudoSelector pseudoSelector, Action<CssProperties> configureStyles)
         {
-            var cssSelector = new CssPattern(name);
+            var cssSelector = new CssPattern(pseudoSelector.CssRenderedValue);
             configureStyles(cssSelector);
 
             patterns.Add(cssSelector);
@@ -53,12 +55,12 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public void AssignUniqueName()
         {
-            Name = $"{Name}-{GetHashCode()}";
+            Name = $"{originalName}-{Math.Abs(GetHashCode())}";
         }
 
-        ICssProperties ICssProperties.AddStyle(string name, string value)
+        ICssProperties ICssProperties.WithStyle(string name, string value)
         {
-            properties.AddStyle(name, value);
+            properties.WithStyle(name, value);
 
             return this;
         }

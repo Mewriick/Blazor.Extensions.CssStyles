@@ -24,14 +24,22 @@ namespace Blazor.Extensions.CssStyles.Css
 
         public void WriteCssClass(ICssClass[] cssClasses)
         {
+            cssClasses
+                .ToList()
+                .ForEach(c => c.AssignUniqueName());
+
             var componentStyles = new StringBuilder(BuilderStartingCapacity);
             var notRealizedCssClasses = cssClasses
-                .Where(c => !cssClassesCache.CssClassIsAlreadyRealized(c));
+                .Where(c => !cssClassesCache.CssClassIsAlreadyRealized(c))
+                .ToList();
+
+            if (!notRealizedCssClasses.Any())
+            {
+                return;
+            }
 
             foreach (var cssClass in notRealizedCssClasses)
             {
-                cssClass.AssignUniqueName();
-
                 var css = cssClassBuilder.BuildCssClassRepresentaion(cssClass);
                 componentStyles.Append(css);
 

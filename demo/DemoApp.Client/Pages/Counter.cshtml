@@ -27,15 +27,18 @@ protected override void OnInit()
 
 
     cssClass = new CssClass("Button")
-            .AddStyle("color", "greeen")
-            .AddSelector("hover", props => props
-                .AddStyle("color", "red")
-                .AddStyle("width", "20px"))
-           .AddMediaQuery("@media (min-width: 1024px)", props =>
-                props.AddStyle("width", "50px"));
+            .WithStyle("color", "green")
+            .WithStyle("margin", "20px")
+            .WithPixelStyle("padding-left", 12)
+            .WithStyle("padding-bottom", 15, CssUnits.Em)
+        .AddPseudoSelector(PseudoSelector.Hover, props => props
+            .WithStyle("color", "red")
+            .WithStyle("width", "20px"))
+       .AddMediaQuery("@media (min-width: 1024px)", props =>
+            props.WithStyle("width", "50px"));
 
 
-    cssClass2 = new CssClass("Button").AddStyle("color", "yellow");
+    cssClass2 = new CssClass("Button").WithStyle("color", "yellow");
 
     ExportStyles(cssClass, cssClass2);
 }

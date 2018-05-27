@@ -26,7 +26,7 @@ namespace Blazor.Extensions.CssStyles.Css
 
             logger.LogInformation($"Start building css class representaion for [{cssClass.Name}]");
 
-            AppendCssClass(cssClass.Name, cssClass);
+            AppendCssClass(cssClass);
 
             foreach (var pattern in cssClass.Patterns)
             {
@@ -39,12 +39,12 @@ namespace Blazor.Extensions.CssStyles.Css
             return classRepresentation;
         }
 
-        private void AppendCssClass(string className, ICssProperties cssProperties)
+        private void AppendCssClass(ICssClass css)
         {
-            cssBuilder.AppendLine($"\n .{className} {{");
-            foreach (var style in cssProperties.Styles)
+            cssBuilder.AppendLine($"\n {css.SelectorType.CssRenderingSymbol}{css.Name} {{");
+            foreach (var style in css.Styles)
             {
-                cssBuilder.AppendLine($"\t{style.Name}: {style.Value};");
+                cssBuilder.AppendLine($"\t{style}");
             }
 
             cssBuilder.Append("}");

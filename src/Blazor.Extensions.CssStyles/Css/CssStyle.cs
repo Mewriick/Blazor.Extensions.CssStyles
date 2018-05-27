@@ -6,12 +6,16 @@ namespace Blazor.Extensions.CssStyles.Css
     {
         public string Name { get; set; }
 
-        public string Value { get; set; }
+        public ICssValue Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}: {Value.CssRepresentation()};";
+        }
 
         protected override IEnumerable<object> GetAtomicValues()
         {
-            yield return Name;
-            yield return Value;
+            yield return this.ToString();
         }
     }
 }

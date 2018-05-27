@@ -13,9 +13,9 @@ namespace Blazor.Extensions.CssStyles.Css
             styles = new List<CssStyle>();
         }
 
-        public ICssProperties AddStyle(string name, string value)
+        public ICssProperties WithStyle(string name, string value)
         {
-            styles.Add(new CssStyle { Name = name, Value = value });
+            styles.Add(new CssStyle { Name = name, Value = new TextCssValue(value) });
 
             return this;
         }

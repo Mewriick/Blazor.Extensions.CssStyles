@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_Solution
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C7542976-4246-4821-AF0D-984EFDE3C2D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Extensions.CssStyles.Tests", "test\Blazor.Extensions.CssStyles.Tests\Blazor.Extensions.CssStyles.Tests.csproj", "{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,10 @@ Global
 		{CFA92B9F-51C8-446F-A170-DF2FD1356713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA92B9F-51C8-446F-A170-DF2FD1356713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA92B9F-51C8-446F-A170-DF2FD1356713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +59,7 @@ Global
 		{E1B5B757-B24D-4F3D-911B-D0D9DFE779DA} = {31344A54-5C89-4039-961F-1102AD0121D6}
 		{DF3D1969-C812-4FE3-A347-3DB4B9413C79} = {31344A54-5C89-4039-961F-1102AD0121D6}
 		{CFA92B9F-51C8-446F-A170-DF2FD1356713} = {31344A54-5C89-4039-961F-1102AD0121D6}
+		{D8CB2869-B340-4B3E-81B6-D09D0CDD56E1} = {C7542976-4246-4821-AF0D-984EFDE3C2D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5708A743-43E9-4592-90BB-3CB04A5E06A7}
