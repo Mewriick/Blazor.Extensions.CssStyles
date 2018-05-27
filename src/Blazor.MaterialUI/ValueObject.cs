@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blazor.MaterialUI
+namespace Blazor.Extensions.CssStyles
 {
     public abstract class ValueObject
     {

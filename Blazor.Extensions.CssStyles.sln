@@ -7,13 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B5688324-052
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{31344A54-5C89-4039-961F-1102AD0121D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.MaterialUI", "src\Blazor.MaterialUI\Blazor.MaterialUI.csproj", "{F8BFFB55-EE75-4DD0-9603-7CB5826FB239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Extensions.CssStyles", "src\Blazor.MaterialUI\Blazor.Extensions.CssStyles.csproj", "{F8BFFB55-EE75-4DD0-9603-7CB5826FB239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Server", "demo\DemoApp.Server\DemoApp.Server.csproj", "{E1B5B757-B24D-4F3D-911B-D0D9DFE779DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Server", "demo\DemoApp.Server\DemoApp.Server.csproj", "{E1B5B757-B24D-4F3D-911B-D0D9DFE779DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Client", "demo\DemoApp.Client\DemoApp.Client.csproj", "{DF3D1969-C812-4FE3-A347-3DB4B9413C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Client", "demo\DemoApp.Client\DemoApp.Client.csproj", "{DF3D1969-C812-4FE3-A347-3DB4B9413C79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Shared", "demo\DemoApp.Shared\DemoApp.Shared.csproj", "{CFA92B9F-51C8-446F-A170-DF2FD1356713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Shared", "demo\DemoApp.Shared\DemoApp.Shared.csproj", "{CFA92B9F-51C8-446F-A170-DF2FD1356713}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{6A4328CC-8BEC-4FCE-B447-220FAAFD59CB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

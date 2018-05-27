@@ -1,11 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Blazor.Extensions.CssStyles.Css;
+using Blazor.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace Blazor.MaterialUI.Css
+namespace Blazor.Extensions.CssStyles
 {
     public static class MaterialUiCssServiceCollectionExtensions
     {
-        public static IServiceCollection AddMaterialUiCss(this IServiceCollection services)
+        public static IServiceCollection AddCss(this IServiceCollection services)
         {
+            services.AddLogging(builder => builder
+                .AddBrowserConsole()
+                .SetMinimumLevel(LogLevel.Debug));
+
             services.AddSingleton<ICssClassBuilder, CssClassBuilder>();
             services.AddSingleton<ICssClassesCache, MemoryCssClassesCache>();
             services.AddSingleton<ICssJsInterop, CssJsInterop>();

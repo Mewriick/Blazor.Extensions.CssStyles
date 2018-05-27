@@ -1,4 +1,4 @@
-﻿namespace Blazor.MaterialUI.Css
+﻿namespace Blazor.Extensions.CssStyles.Css
 {
     public interface ICss
     {

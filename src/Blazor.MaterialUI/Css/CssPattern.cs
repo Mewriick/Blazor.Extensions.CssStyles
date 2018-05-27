@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Blazor.MaterialUI.Css
+namespace Blazor.Extensions.CssStyles.Css
 {
     public class CssPattern : CssProperties, ICss
     {
@@ -22,7 +22,7 @@ namespace Blazor.MaterialUI.Css
                 cssBuilder.AppendLine($"\t{style.Name}: {style.Value};");
             }
 
-            cssBuilder.AppendLine("}");
+            cssBuilder.Append("}");
 
             return cssBuilder.ToString();
         }

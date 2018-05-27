@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blazor.MaterialUI.Css
+namespace Blazor.Extensions.CssStyles.Css
 {
     public class CssProperties : ValueObject, ICssProperties
     {

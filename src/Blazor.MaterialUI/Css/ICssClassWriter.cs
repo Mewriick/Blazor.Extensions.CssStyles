@@ -1,7 +1,7 @@
-﻿namespace Blazor.MaterialUI.Css
+﻿namespace Blazor.Extensions.CssStyles.Css
 {
     public interface ICssClassWriter
     {
-        void WriteCssClass(ICssClass cssClass);
+        void WriteCssClass(ICssClass[] cssClasses);
     }
 }

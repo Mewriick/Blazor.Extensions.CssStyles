@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Blazor.MaterialUI
-@using Blazor.MaterialUI.Css
-@inject ICssClassWriter cssWriter;
+@using Blazor.Extensions.CssStyles.Css;
+@inherits Blazor.Extensions.CssStyles.Components.ComponentWithStyles
 
 @page "/counter"
 
@@ -37,8 +37,6 @@ protected override void OnInit()
 
     cssClass2 = new CssClass("Button").AddStyle("color", "yellow");
 
-
-    cssWriter.WriteCssClass(cssClass);
-    cssWriter.WriteCssClass(cssClass2);
+    ExportStyles(cssClass, cssClass2);
 }
 }

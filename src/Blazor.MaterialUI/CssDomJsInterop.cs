@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Blazor.Browser.Interop;
 
-namespace Blazor.MaterialUI
+namespace Blazor.Extensions.CssStyles
 {
-    public class MaterialUiJsInterop
+    public class CssDomJsInterop
     {
         public static string AppendStyle(string css)
         {

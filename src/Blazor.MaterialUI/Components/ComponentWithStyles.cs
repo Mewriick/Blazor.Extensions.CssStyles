@@ -1,17 +1,21 @@
-﻿using Blazor.MaterialUI.Css;
+﻿using Blazor.Extensions.CssStyles.Css;
 using Microsoft.AspNetCore.Blazor.Components;
-using System.Collections.Generic;
 
-namespace Blazor.MaterialUI.Components
+namespace Blazor.Extensions.CssStyles.Components
 {
     public class ComponentWithStyles : BlazorComponent
     {
-        [Parameter]
-        protected List<CssClass> CssClasses { get; set; }
+        [Inject]
+        protected ICssClassWriter CssClassWriter { get; private set; }
 
         public ComponentWithStyles()
         {
 
+        }
+
+        protected void ExportStyles(params ICssClass[] cssClasses)
+        {
+            CssClassWriter.WriteCssClass(cssClasses);
         }
     }
 }

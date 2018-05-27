@@ -1,9 +1,12 @@
 ﻿using System.Text;
 
-namespace Blazor.MaterialUI.Css
+namespace Blazor.Extensions.CssStyles.Css
 {
     public class MediaCssPattern : CssPattern
     {
+        private const int BuilderStartingCapacity = 100;
+
+
         public MediaCssPattern(string name)
             : base(name)
         {
@@ -11,7 +14,7 @@ namespace Blazor.MaterialUI.Css
 
         public override string BuildCssRepresentation(string parentClassName)
         {
-            var cssBuilder = new StringBuilder(100);
+            var cssBuilder = new StringBuilder(BuilderStartingCapacity);
 
             cssBuilder.AppendLine($"\n {Name} {{");
             cssBuilder.AppendLine($"\t .{parentClassName} {{");
@@ -22,7 +25,7 @@ namespace Blazor.MaterialUI.Css
             }
 
             cssBuilder.AppendLine("\t }");
-            cssBuilder.AppendLine("}");
+            cssBuilder.Append("}");
 
             return cssBuilder.ToString();
         }
