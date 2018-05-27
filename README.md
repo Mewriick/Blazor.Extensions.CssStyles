@@ -56,7 +56,9 @@ In your Blazor component add Tag helper and **Inherit from ComponentWithStyles**
 				.WithStyle(CssPropertyNames.Width, "20px"))
 			.AddMediaQuery("@media (min-width: 1024px)", props =>
 				props.WithStyle(CssPropertyNames.Width, "50px"));
-	}
+				
+	ExportStyles(cssClass);
+   }
 }
 ```
 
