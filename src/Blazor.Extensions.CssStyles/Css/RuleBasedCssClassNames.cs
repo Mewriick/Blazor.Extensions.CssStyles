@@ -1,44 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blazor.Extensions.CssStyles.Css
 {
     public class RuleBasedCssClassNames : ICssClassNames
     {
-        private readonly Dictionary<ICssClass, Func<bool>> cssClassApplyRules;
+        private readonly Dictionary<string, Func<bool>> cssClassApplyRules;
+        private readonly Dictionary<ICssClass, Func<bool>> computedCssClassApplyRules;
 
         public RuleBasedCssClassNames()
         {
-            this.cssClassApplyRules = new Dictionary<ICssClass, Func<bool>>();
+            this.cssClassApplyRules = new Dictionary<string, Func<bool>>();
+            this.computedCssClassApplyRules = new Dictionary<ICssClass, Func<bool>>();
+        }
+
+        public RuleBasedCssClassNames AddCssClass(ICssClass cssClass)
+        {
+            AddCssClassApplyRule(cssClass, () => true);
+
+            return this;
+        }
+
+        public RuleBasedCssClassNames AddCssClass(string className)
+        {
+            AddCssClassApplyRule(className, () => true);
+
+            return this;
         }
 
         public RuleBasedCssClassNames AddCssClassApplyRule(ICssClass cssClass, Func<bool> applyRule)
         {
-            if (cssClassApplyRules.ContainsKey(cssClass))
+            cssClass.AssignUniqueName();
+            AddCssClassApplyRule(cssClass.Name, applyRule);
+
+            return this;
+        }
+
+        public RuleBasedCssClassNames AddCssClassApplyRule(string className, Func<bool> applyRule)
+        {
+            CheckParams(className, applyRule);
+
+            if (cssClassApplyRules.ContainsKey(className))
             {
-                throw new ArgumentException($"For the css class [{cssClass.Name}] already exists rule when css class should be in use.");
+                throw new ArgumentException($"For the css class [{className}] already exists rule when css class should be in use.");
             }
 
-            cssClassApplyRules.Add(cssClass, applyRule);
+            cssClassApplyRules.Add(className, applyRule);
 
             return this;
         }
 
         public string BuildCssClassNames()
         {
-            var classNames = string.Empty;
+            var classNames = string.Join(" ", cssClassApplyRules
+                .Where(apr => apr.Value())
+                .Select(apr => apr.Key));
 
-            foreach (var classApplyRulePair in cssClassApplyRules)
+            return classNames;
+        }
+
+        private void CheckParams(string className, Func<bool> applyRule)
+        {
+            if (string.IsNullOrWhiteSpace(className))
             {
-                var applyRule = classApplyRulePair.Value;
-                var cssClas = classApplyRulePair.Key;
-                if (applyRule())
-                {
-                    classNames = $"{classNames} {cssClas.Name}";
-                }
+                throw new ArgumentNullException(nameof(className));
             }
 
-            return classNames.TrimStart();
+            if (applyRule is null)
+            {
+                throw new ArgumentNullException(nameof(applyRule));
+            }
         }
     }
 }

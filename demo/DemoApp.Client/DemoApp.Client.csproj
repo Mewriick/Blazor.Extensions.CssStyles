@@ -19,4 +19,8 @@
     <ProjectReference Include="..\DemoApp.Shared\DemoApp.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\RuleBasedCssClassNamesPage.cshtml" />
+  </ItemGroup>
+
 </Project>

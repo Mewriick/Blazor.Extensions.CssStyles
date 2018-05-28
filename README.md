@@ -14,7 +14,6 @@ In app client register required services
 ```cs
 var serviceProvider = new BrowserServiceProvider(services =>
 {
-    // Add any custom services here
     services.AddCss();
 });
 ```
@@ -62,6 +61,8 @@ In your Blazor component add Tag helper and **Inherit from ComponentWithStyles**
 }
 ```
 
+**Important is to call method** ``ExportStyles``, which export defined styles into HTML DOM.
+
 Result
 ```html
 <style type="text/css">
@@ -86,5 +87,45 @@ Result
 
 <button class="Button-1399409485">Click me</button>
 ```
+
+# Dynamic css class names
+```cs
+new RuleBasedCssClassNames()
+    .AddCssClass("foo")
+    .AddCssClassApplyRule("bar", () => true)
+    .AddCssClassApplyRule("baz", () => false)
+	.BuildCssClassNames(); // "foo bar"
+```
+
+```cs
+<button class=@(buttonClasses.BuildCssClassNames()) onclick="@IncrementCount">Click me</button>
+
+@functions {
+    int currentCount = 0;
+    CssClass cssClassGreen;
+    CssClass cssClassRed;
+    RuleBasedCssClassNames buttonClasses;
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        cssClassGreen = new CssClass("Button").WithStyle(CssPropertyNames.Color, "green");
+        cssClassRed = new CssClass("Button").WithStyle(CssPropertyNames.Color, "red");
+        buttonClasses = new RuleBasedCssClassNames()
+                        .AddCssClassApplyRule(cssClassGreen, () => currentCount % 2 == 0)
+                        .AddCssClassApplyRule(cssClassRed, () => currentCount % 2 > 0);
+
+
+        ExportStyles(cssClassGreen, cssClassRed);
+    }
+}
+```
+
 # Demo
 // TODO

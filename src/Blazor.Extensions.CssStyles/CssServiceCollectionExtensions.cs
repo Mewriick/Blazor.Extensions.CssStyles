@@ -17,6 +17,7 @@ namespace Blazor.Extensions.CssStyles
             services.AddSingleton<ICssClassesCache, MemoryCssClassesCache>();
             services.AddSingleton<ICssJsInterop, CssJsInterop>();
             services.AddSingleton<ICssClassWriter, BrowserCssClassWriter>();
+            services.AddSingleton<ICssClassNamesExecutor, CssClassNamesExecutor>();
 
             return services;
         }

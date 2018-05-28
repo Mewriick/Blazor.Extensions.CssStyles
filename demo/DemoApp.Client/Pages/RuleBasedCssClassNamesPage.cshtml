@@ -1,0 +1,33 @@
+﻿@addTagHelper *, Blazor.Extensions.CssStyles
+@using Blazor.Extensions.CssStyles.Css;
+@inherits Blazor.Extensions.CssStyles.Components.ComponentWithStyles
+
+@page "/ruleBasedCssClassNamesPage"
+
+<button class=@(buttonClasses.BuildCssClassNames()) onclick="@IncrementCount">Click me</button>
+
+@functions {
+    int currentCount = 0;
+    CssClass cssClassGreen;
+    CssClass cssClassRed;
+    RuleBasedCssClassNames buttonClasses;
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        cssClassGreen = new CssClass("Button").WithStyle(CssPropertyNames.Color, "green");
+        cssClassRed = new CssClass("Button").WithStyle(CssPropertyNames.Color, "red");
+        buttonClasses = new RuleBasedCssClassNames()
+                        .AddCssClassApplyRule(cssClassGreen, () => currentCount % 2 == 0)
+                        .AddCssClassApplyRule(cssClassRed, () => currentCount % 2 > 0);
+
+
+        ExportStyles(cssClassGreen, cssClassRed);
+    }
+}
