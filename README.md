@@ -7,7 +7,8 @@
 **Still development not completely finished** 
 
 # Instal
-// TODO
+![NuGet Pre Release](https://img.shields.io/nuget/vpre/Microsoft.AspNet.Mvc.svg)(https://www.nuget.org/packages/Blazor.Extensions.CssStyles/)
+
 
 # Setup
 In app client register required services
