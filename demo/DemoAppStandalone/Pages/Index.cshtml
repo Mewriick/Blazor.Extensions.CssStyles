@@ -1,0 +1,32 @@
+﻿@addTagHelper *, Blazor.Extensions.CssStyles
+@using Blazor.Extensions.CssStyles.Css;
+@inherits Blazor.Extensions.CssStyles.Components.ComponentWithStyles
+@page "/"
+
+<h1 class="@(classTitle.Name)">Introduction</h1>
+<p>Define Css classes straight in your Blazor components</p>
+<div>
+    <p class="@(classNote.Name)">Blazor.Extensions.CssStyles is an experimental project. It changes frequently and evolves rapidly.</p>
+</div>
+@functions {
+CssClass classTitle;
+CssClass classNote;
+protected override void OnInit()
+{
+    base.OnInit();
+
+    classTitle = new CssClass("MainTitle")
+        .WithlStyleInRemUnit(CssPropertyNames.FontSize, 2)
+        .WithStyle(CssPropertyNames.Margin, "2.5rem 0 1.5rem 0");
+
+    classNote = new CssClass("Note")
+        .WithStyle(CssPropertyNames.Color, "#666")
+        .WithlStyleInRemUnit(CssPropertyNames.FontSize, 1)
+        .WithStyle(CssPropertyNames.Display, "block")
+        .WithlStyleInPixelUnit(CssPropertyNames.Padding, 15)
+        .WithStyle(CssPropertyNames.Background, "#E7F2FA")
+        .WithStyle(CssPropertyNames.BorderTop, "30px solid #6AB0DE");
+
+    ExportStyles(classTitle, classNote);
+}
+}
