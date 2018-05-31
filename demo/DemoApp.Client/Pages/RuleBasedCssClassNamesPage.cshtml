@@ -4,12 +4,50 @@
 
 @page "/ruleBasedCssClassNamesPage"
 
+<h1 class="@(classTitle.Name)">Rule based class names exmaples</h1>
+
 <button class=@(buttonClasses.BuildCssClassNames()) onclick="@IncrementCount">Click me</button>
+
+<p class="content">
+    Here we have button, which change color after click. This behavior is achived by:
+</p>
+
+<pre class="cscode"><code class="hljs">
+&lt;button <span class="hljs-keyword">class</span>=@@(buttonClasses.BuildCssClassNames()) onclick=<span class="hljs-string">"@@IncrementCount"</span>&gt;Click me&lt;/button&gt;
+
+@@functions {
+    <span class="hljs-keyword">int</span> currentCount = <span class="hljs-number">0;</span>
+    <span class="hljs-title">CssClass</span> cssClassYellow;
+    <span class="hljs-title">CssClass</span> cssClassRed;
+    <span class="hljs-title">RuleBasedCssClassNames</span> buttonClasses;
+
+    <span class="hljs-keyword">void</span> IncrementCount()
+    {
+        currentCount++;
+    }
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> OnInit()
+    {
+        <span class="hljs-keyword">base</span>.OnInit();
+
+        cssClassYellow = <span class="hljs-keyword">new</span> <span class="hljs-title">CssClass</span>(<span class="hljs-string">"Button"</span>).WithStyle(<span class="hljs-title">CssPropertyNames</span>.BackgroundColor, <span class="hljs-string">"green"</span>);
+        cssClassRed = <span class="hljs-keyword">new</span> <span class="hljs-title">CssClass</span>(<span class="hljs-string">"Button"</span>).WithStyle(<span class="hljs-title">CssPropertyNames</span>.BackgroundColor, <span class="hljs-string">"red"</span>);
+        buttonClasses = <span class="hljs-keyword">new</span> <span class="hljs-title">RuleBasedCssClassNames</span>()
+                .AddCssClass(<span class="hljs-string">"btn btn-primary"</span>)
+                .AddCssClassApplyRule(cssClassYellow, () =&gt; currentCount % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+                .AddCssClassApplyRule(cssClassRed, () =&gt; currentCount % <span class="hljs-number">2</span> &gt; <span class="hljs-number">0</span>);
+
+
+        ExportStyles(cssClassYellow, cssClassRed);
+    }
+}
+</code></pre>
 
 @functions {
     int currentCount = 0;
-    CssClass cssClassGreen;
+    CssClass cssClassYellow;
     CssClass cssClassRed;
+    CssClass classTitle;
     RuleBasedCssClassNames buttonClasses;
 
     void IncrementCount()
@@ -21,13 +59,18 @@
     {
         base.OnInit();
 
-        cssClassGreen = new CssClass("Button").WithStyle(CssPropertyNames.Color, "green");
-        cssClassRed = new CssClass("Button").WithStyle(CssPropertyNames.Color, "red");
+        classTitle = new CssClass("MainTitle")
+            .WithlStyleInRemUnit(CssPropertyNames.FontSize, 2)
+            .WithStyle(CssPropertyNames.Margin, "2.5rem 0 1.5rem 0");
+
+        cssClassYellow = new CssClass("Button").WithStyle(CssPropertyNames.BackgroundColor, "green");
+        cssClassRed = new CssClass("Button").WithStyle(CssPropertyNames.BackgroundColor, "red");
         buttonClasses = new RuleBasedCssClassNames()
-                        .AddCssClassApplyRule(cssClassGreen, () => currentCount % 2 == 0)
+                        .AddCssClass("btn btn-primary")
+                        .AddCssClassApplyRule(cssClassYellow, () => currentCount % 2 == 0)
                         .AddCssClassApplyRule(cssClassRed, () => currentCount % 2 > 0);
 
 
-        ExportStyles(cssClassGreen, cssClassRed);
+        ExportStyles(cssClassYellow, cssClassRed, classTitle);
     }
 }
